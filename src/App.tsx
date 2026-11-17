@@ -156,8 +156,8 @@ function App() {
   const rooms = useMemo(() => SAMPLE_ROOMS, []);
   const defaultTimeLabel = useDefaultTimeLabel();
   const [currentTimeLabel, setCurrentTimeLabel] = useState(defaultTimeLabel);
-  const currentTimeMissing = currentTimeLabel.trim() === '';
-  const currentTime = labelToMinutes(currentTimeLabel) ?? 0;
+  const currentTime = labelToMinutes(currentTimeLabel);
+  const currentTimeMissing = currentTime === null;
 
   const [selectedRoomId, setSelectedRoomId] = useState<string>(rooms[0]?.id ?? '');
   const [startLabel, setStartLabel] = useState('09:00');
@@ -167,7 +167,7 @@ function App() {
   const selectedRoom = rooms.find((r) => r.id === selectedRoomId) ?? null;
 
   const handleCheck = () => {
-    if (currentTimeLabel.trim() === '') {
+    if (currentTime === null) {
       setResult({ available: false, reason: 'Enter the current time.' });
       return;
     }

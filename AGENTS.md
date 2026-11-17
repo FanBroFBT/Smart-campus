@@ -16,11 +16,11 @@
 
 ## Safe commands
 - Install: `npm install`
-- Test: `npx vitest run src`
+- Test: `npm test`
 - Typecheck: `npm run typecheck`
 - Lint: `npm run lint`
 - Build: `npm run build`
-All four must pass before proposing any change as done.
+All of these must pass before proposing any change as done.
 
 ## Forbidden actions
 - No new dependencies without explicit approval.

@@ -14,7 +14,7 @@ npm run dev       # local dev server
 ## Verification commands
 
 ```bash
-npx vitest run src   # unit tests (17 tests over src/utils.ts)
+npm test             # unit tests (17 tests over src/utils.ts, plus src/labels.test.ts)
 npm run typecheck     # tsc --noEmit
 npm run lint           # eslint
 npm run build          # production build
