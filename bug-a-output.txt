@@ -1,0 +1,84 @@
+
+[1m[7m[36m RUN [39m[27m[22m [36mv2.1.9 [39m[90mC:/Users/Роллан/Documents/Project[39m
+
+ [31m❯[39m src/utils.test.ts [2m([22m[2m17 tests[22m[2m | [22m[31m3 failed[39m[2m)[22m[90m 24[2mms[22m[39m
+[31m   [31m×[31m T01 AC4: touching after is available[90m 15[2mms[22m[31m[39m
+[31m     → expected { available: false, …(1) } to deeply equal { available: true }[39m
+[31m   [31m×[31m T08 AC4: touching before is available[90m 2[2mms[22m[31m[39m
+[31m     → expected { available: false, …(1) } to deeply equal { available: true }[39m
+[31m   [31m×[31m T16 own: starts 1 min after now and touches booking start[90m 1[2mms[22m[31m[39m
+[31m     → expected { available: false, …(1) } to deeply equal { available: true }[39m
+
+[31m⎯⎯⎯⎯⎯⎯⎯[1m[7m Failed Tests 3 [27m[22m⎯⎯⎯⎯⎯⎯⎯[39m
+
+[31m[1m[7m FAIL [27m[22m[39m src/utils.test.ts[2m > [22mT01 AC4: touching after is available
+[31m[1mAssertionError[22m: expected { available: false, …(1) } to deeply equal { available: true }[39m
+
+[32m- Expected[39m
+[31m+ Received[39m
+
+[2m  Object {[22m
+[32m-   "available": true,[39m
+[31m+   "available": false,[39m
+[31m+   "reason": "Overlaps with \"Existing\" (10:00–11:00).",[39m
+[2m  }[22m
+
+[36m [2m❯[22m src/utils.test.ts:[2m23:27[22m[39m
+    [90m 21| [39m[90m// ---------- AC4: касание границ ----------[39m
+    [90m 22| [39m[34mtest[39m([32m'T01 AC4: touching after is available'[39m[33m,[39m () [33m=>[39m
+    [90m 23| [39m  [34mexpect[39m([34mcheck[39m([34m660[39m[33m,[39m [34m720[39m))[33m.[39m[34mtoEqual[39m({ available[33m:[39m [35mtrue[39m }))[33m;[39m
+    [90m   | [39m                          [31m^[39m
+    [90m 24| [39m[34mtest[39m([32m'T08 AC4: touching before is available'[39m[33m,[39m () [33m=>[39m
+    [90m 25| [39m  [34mexpect[39m([34mcheck[39m([34m570[39m[33m,[39m [34m600[39m))[33m.[39m[34mtoEqual[39m({ available[33m:[39m [35mtrue[39m }))[33m;[39m
+
+[31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/3]⎯[22m[39m
+
+[31m[1m[7m FAIL [27m[22m[39m src/utils.test.ts[2m > [22mT08 AC4: touching before is available
+[31m[1mAssertionError[22m: expected { available: false, …(1) } to deeply equal { available: true }[39m
+
+[32m- Expected[39m
+[31m+ Received[39m
+
+[2m  Object {[22m
+[32m-   "available": true,[39m
+[31m+   "available": false,[39m
+[31m+   "reason": "Overlaps with \"Existing\" (10:00–11:00).",[39m
+[2m  }[22m
+
+[36m [2m❯[22m src/utils.test.ts:[2m25:27[22m[39m
+    [90m 23| [39m  [34mexpect[39m([34mcheck[39m([34m660[39m[33m,[39m [34m720[39m))[33m.[39m[34mtoEqual[39m({ available[33m:[39m [35mtrue[39m }))[33m;[39m
+    [90m 24| [39m[34mtest[39m([32m'T08 AC4: touching before is available'[39m[33m,[39m () [33m=>[39m
+    [90m 25| [39m  [34mexpect[39m([34mcheck[39m([34m570[39m[33m,[39m [34m600[39m))[33m.[39m[34mtoEqual[39m({ available[33m:[39m [35mtrue[39m }))[33m;[39m
+    [90m   | [39m                          [31m^[39m
+    [90m 26| [39m
+    [90m 27| [39m[90m// ---------- AC1: некорректный интервал ----------[39m
+
+[31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/3]⎯[22m[39m
+
+[31m[1m[7m FAIL [27m[22m[39m src/utils.test.ts[2m > [22mT16 own: starts 1 min after now and touches booking start
+[31m[1mAssertionError[22m: expected { available: false, …(1) } to deeply equal { available: true }[39m
+
+[32m- Expected[39m
+[31m+ Received[39m
+
+[2m  Object {[22m
+[32m-   "available": true,[39m
+[31m+   "available": false,[39m
+[31m+   "reason": "Overlaps with \"Existing\" (10:00–11:00).",[39m
+[2m  }[22m
+
+[36m [2m❯[22m src/utils.test.ts:[2m82:27[22m[39m
+    [90m 80| [39m[90m// ---------- Два своих случая ----------[39m
+    [90m 81| [39m[34mtest[39m([32m'T16 own: starts 1 min after now and touches booking start'[39m[33m,[39m () [33m=>[39m
+    [90m 82| [39m  [34mexpect[39m([34mcheck[39m([34m541[39m[33m,[39m [34m600[39m))[33m.[39m[34mtoEqual[39m({ available[33m:[39m [35mtrue[39m }))[33m;[39m [90m// граница "в[39m…
+    [90m   | [39m                          [31m^[39m
+    [90m 83| [39m[34mtest[39m([32m'T17 own: ends exactly at 24:00'[39m[33m,[39m () [33m=>[39m
+    [90m 84| [39m  [34mexpect[39m([34mcheck[39m([34m1380[39m[33m,[39m [34m1440[39m))[33m.[39m[34mtoEqual[39m({ available[33m:[39m [35mtrue[39m }))[33m;[39m [90m// граница [39m…
+
+[31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/3]⎯[22m[39m
+
+[2m Test Files [22m [1m[31m1 failed[39m[22m[90m (1)[39m
+[2m      Tests [22m [1m[31m3 failed[39m[22m[2m | [22m[1m[32m14 passed[39m[22m[90m (17)[39m
+[2m   Start at [22m 18:38:16
+[2m   Duration [22m 1.19s[2m (transform 58ms, setup 0ms, collect 60ms, tests 24ms, environment 0ms, prepare 152ms)[22m
+

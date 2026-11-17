@@ -1,0 +1,55 @@
+
+[1m[7m[36m RUN [39m[27m[22m [36mv2.1.9 [39m[90mC:/Users/Роллан/Documents/Project[39m
+
+ [31m❯[39m src/utils.test.ts [2m([22m[2m17 tests[22m[2m | [22m[31m1 failed[39m[2m)[22m[90m 19[2mms[22m[39m
+[31m   [31m×[31m T15 AC5: room data is not mutated[90m 12[2mms[22m[31m[39m
+[31m     → expected { id: 'r1', name: 'Room 1', …(4) } to deeply equal { id: 'r1', name: 'Room 1', …(4) }[39m
+
+[31m⎯⎯⎯⎯⎯⎯⎯[1m[7m Failed Tests 1 [27m[22m⎯⎯⎯⎯⎯⎯⎯[39m
+
+[31m[1m[7m FAIL [27m[22m[39m src/utils.test.ts[2m > [22mT15 AC5: room data is not mutated
+[31m[1mAssertionError[22m: expected { id: 'r1', name: 'Room 1', …(4) } to deeply equal { id: 'r1', name: 'Room 1', …(4) }[39m
+
+[32m- Expected[39m
+[31m+ Received[39m
+
+[2m  Object {[22m
+[2m    "blocked": false,[22m
+[2m    "bookings": Array [[22m
+[2m      Object {[22m
+[32m-       "end": 860,[39m
+[32m-       "start": 800,[39m
+[32m-       "title": "Late",[39m
+[32m-     },[39m
+[32m-     Object {[39m
+[2m        "end": 660,[22m
+[2m        "start": 600,[22m
+[2m        "title": "Early",[22m
+[31m+     },[39m
+[31m+     Object {[39m
+[31m+       "end": 860,[39m
+[31m+       "start": 800,[39m
+[31m+       "title": "Late",[39m
+[2m      },[22m
+[2m    ],[22m
+[2m    "building": "A",[22m
+[2m    "capacity": 10,[22m
+[2m    "id": "r1",[22m
+[2m    "name": "Room 1",[22m
+[2m  }[22m
+
+[36m [2m❯[22m src/utils.test.ts:[2m77:16[22m[39m
+    [90m 75| [39m  [35mconst[39m before [33m=[39m [33mJSON[39m[33m.[39m[34mparse[39m([33mJSON[39m[33m.[39m[34mstringify[39m(room))[33m;[39m
+    [90m 76| [39m  [34mcheckAvailability[39m(room[33m,[39m [34m660[39m[33m,[39m [34m720[39m[33m,[39m [33mNOW[39m)[33m;[39m
+    [90m 77| [39m  [34mexpect[39m(room)[33m.[39m[34mtoEqual[39m(before)[33m;[39m
+    [90m   | [39m               [31m^[39m
+    [90m 78| [39m})[33m;[39m
+    [90m 79| [39m
+
+[31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯[22m[39m
+
+[2m Test Files [22m [1m[31m1 failed[39m[22m[90m (1)[39m
+[2m      Tests [22m [1m[31m1 failed[39m[22m[2m | [22m[1m[32m16 passed[39m[22m[90m (17)[39m
+[2m   Start at [22m 18:40:48
+[2m   Duration [22m 1.12s[2m (transform 61ms, setup 0ms, collect 65ms, tests 19ms, environment 0ms, prepare 157ms)[22m
+

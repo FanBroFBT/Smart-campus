@@ -1,0 +1,78 @@
+import type { AvailabilityResult, Room } from './types';
+
+export const MINUTES_PER_DAY = 1440;
+export const MAX_DURATION = 120;
+
+export function minutesToLabel(min: number): string {
+  const clamped = ((min % MINUTES_PER_DAY) + MINUTES_PER_DAY) % MINUTES_PER_DAY;
+  const h = Math.floor(clamped / 60);
+  const m = clamped % 60;
+  return `${h.toString().padStart(2, '0')}:${m.toString().padStart(2, '0')}`;
+}
+
+export function labelToMinutes(label: string): number | null {
+  const match = /^(\d{1,2}):(\d{2})$/.exec(label.trim());
+  if (!match) return null;
+  const h = Number(match[1]);
+  const m = Number(match[2]);
+  if (h < 0 || h > 23 || m < 0 || m > 59) return null;
+  return h * 60 + m;
+}
+
+function overlaps(aStart: number, aEnd: number, bStart: number, bEnd: number): boolean {
+  // Touching endpoints are allowed, so strict inequality.
+  return aStart < bEnd && bStart < aEnd;
+}
+
+/**
+ * Evaluates all acceptance criteria without mutating room data.
+ * AC1: 0 <= start < end <= 1440 and start > currentTime
+ * AC2: duration <= 120
+ * AC3: room must not be blocked
+ * AC4: no overlap with existing bookings (touching endpoints allowed)
+ */
+export function checkAvailability(
+  room: Room | null,
+  start: number | null,
+  end: number | null,
+  currentTime: number,
+): AvailabilityResult {
+  if (!room) {
+    return { available: false, reason: 'Please select a room.' };
+  }
+  if (start === null || end === null) {
+    return { available: false, reason: 'Please enter both a start and end time.' };
+  }
+  if (start < 0 || end > MINUTES_PER_DAY || start >= end) {
+    return {
+      available: false,
+      reason: 'The interval must satisfy 0 ≤ start < end ≤ 24:00.',
+    };
+  }
+  if (start <= currentTime) {
+    return {
+      available: false,
+      reason: `Start time must be after the current time (${minutesToLabel(currentTime)}).`,
+    };
+  }
+  if (end - start > MAX_DURATION) {
+    return {
+      available: false,
+      reason: 'Bookings cannot be longer than 120 minutes.',
+    };
+  }
+  if (room.blocked) {
+    return {
+      available: false,
+      reason: room.blockedReason ?? 'This room is currently blocked.',
+    };
+  }
+  const conflict = room.bookings.find((b) => overlaps(start, end, b.start, b.end));
+  if (conflict) {
+    return {
+      available: false,
+      reason: `Overlaps with "${conflict.title}" (${minutesToLabel(conflict.start)}–${minutesToLabel(conflict.end)}).`,
+    };
+  }
+  return { available: true };
+}
